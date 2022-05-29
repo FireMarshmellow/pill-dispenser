@@ -1,10 +1,3 @@
-#   __  __      _ _               ______ _
-#  |  \/  |    | | |             |  ____(_)
-#  | \  / | ___| | | _____      _| |__   _ _ __ ___
-#  | |\/| |/ _ \ | |/ _ \ \ /\ / /  __| | | '__/ _ \
-#  | |  | |  __/ | | (_) \ V  V /| |    | | | |  __/
-#  |_|  |_|\___|_|_|\___/ \_/\_/ |_|    |_|_|  \___|
-
 from machine import Pin, PWM, ADC,
 from time import sleep
 import utime
@@ -53,7 +46,7 @@ def servo1():
     sleep(1)
     servo1Pin.duty_u16(2333)
     sleep(1)
-    servo0Pin.duty_u16(1700)
+    servo1Pin.duty_u16(1700)
     sleep(1)
     servo1Pin.duty_u16(1000)
     sleep(0.6)
@@ -69,7 +62,7 @@ def servo2():
     sleep(1)
     servo2Pin.duty_u16(2333)
     sleep(1)
-    servo0Pin.duty_u16(1700)
+    servo2Pin.duty_u16(1700)
     sleep(1)
     servo2Pin.duty_u16(1000)
     sleep(0.6)
@@ -83,7 +76,8 @@ while True:
     if button0.value():
        servo0()
        servo1()
-    if button1.value():
        servo2()
+    if button1.value():
+        pass
     sleep(0.6)
  
