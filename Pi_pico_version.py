@@ -77,7 +77,5 @@ while True:
        servo0()
        servo1()
        servo2()
-    if button1.value():
-        pass
-    sleep(0.6)
+    sleep(0.5)
  
