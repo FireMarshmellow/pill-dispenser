@@ -1,4 +1,3 @@
-
 from time import sleep
 import utime
 import machine
@@ -11,35 +10,27 @@ Senser = machine.Pin(13, machine.Pin.IN, machine.Pin.PULL_UP)
 
 #servos 15-107
 def Contaner1():
+    print('contaner1')
     Servo1.duty(15)
     sleep(0.5)
     Servo1.duty(100)
 
 def Contaner2():
+    print('contaner2')
     Servo2.duty(15)
     sleep(0.5)
     Servo2.duty(100)
 
 def Contaner3():
+    print('contaner3')
     Servo3.duty(15)
     sleep(0.5)
     Servo3.duty(100)
     
 def Contaner4():
+    print('contaner4')
     Servo4.duty(15)
     sleep(0.5)
     Servo4.duty(100)
 
-
-# while True:
-#     hellow = input()
-#     if hellow == 'test1':
-#         Contaner1()
-#         sleep(1)
-#         Contaner2()
-#         sleep(1)
-#         Contaner3()
-#         sleep(1)
-#         Contaner4()
-#         sleep(1)
 

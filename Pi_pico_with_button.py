@@ -3,8 +3,6 @@ from time import sleep
 import utime
 
 button0 = Pin(6, Pin.IN, Pin.PULL_DOWN)
-button1 = Pin(7, Pin.IN, Pin.PULL_DOWN)
-
 Vibe_check = Pin(16, Pin.IN, Pin.PULL_DOWN)
 
 servo0Pin = PWM(Pin(17))
