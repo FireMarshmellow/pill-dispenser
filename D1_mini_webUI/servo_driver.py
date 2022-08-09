@@ -1,39 +1,20 @@
-from time import sleep
-import utime
+from utime import sleep
 import machine
 
-Servo1 = machine.PWM(machine.Pin(5),freq=40) #D1
-Servo2 = machine.PWM(machine.Pin(4),freq=40) #D2
-Servo3 = machine.PWM(machine.Pin(12),freq=40) #D6
-Servo4 = machine.PWM(machine.Pin(15),freq=40) #D8
-Senser = machine.Pin(14, machine.Pin.IN) #D5
-
-#servos 15-107
-def Contaner1():
-    print('contaner1')
-    Servo1.duty(15)
-    sleep(0.5)
-    Servo1.duty(100)
-
-def Contaner2():
-    print('contaner2')
-    Servo2.duty(15)
-    sleep(0.5)
-    Servo2.duty(100)
-
-def Contaner3():
-    print('contaner3')
-    Servo3.duty(15)
-    sleep(0.5)
-    Servo3.duty(100)
-    
-def Contaner4():
-    print('contaner4')
-    Servo4.duty(15)
-    sleep(0.5)
-    Servo4.duty(100)
-
-
-while True:
-    print(Senser)
-    sleep(1)
+def Contener(x): #x = pin num
+    print("Contener" + str(x))
+    Servo = machine.PWM(machine.Pin(int(x)),freq=40)
+    Senser = machine.Pin(14, machine.Pin.IN) #D5
+    while int(Senser.value()) == 0:
+        Servo.duty(100)
+        sleep(0.5)
+        Servo.duty(40)
+        sleep(0.3)
+        Servo.duty(30)
+        sleep(0.3)
+        Servo.duty(25)
+        sleep(0.3)
+        Servo.duty(20)
+        sleep(0.3)
+        Servo.duty(15)
+        sleep(0.3)
