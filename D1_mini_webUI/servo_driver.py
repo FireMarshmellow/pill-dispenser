@@ -1,4 +1,4 @@
-from utime import sleep
+from time import sleep
 import machine
 
 def Contener(x): #x = pin num
