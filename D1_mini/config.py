@@ -3,7 +3,7 @@ ssid = ""
 password = ""
 
 # Change this if the time I'm out put is wrong.
-timezone = 0
+timezone = 1
 
 # please enter at what time you'd like which container to release pills.
 # this works on a 24-hour clock if you require two of the same pill please enter the time twice.

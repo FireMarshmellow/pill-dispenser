@@ -2,6 +2,15 @@ import network, re
 import time
 import config
 import servo_driver
+
+#   __  __      _ _               ______ _
+#  |  \/  |    | | |             |  ____(_)
+#  | \  / | ___| | | _____      _| |__   _ _ __ ___
+#  | |\/| |/ _ \ | |/ _ \ \ /\ / /  __| | | '__/ _ \
+#  | |  | |  __/ | | (_) \ V  V /| |    | | | |  __/
+#  |_|  |_|\___|_|_|\___/ \_/\_/ |_|    |_|_|  \___|
+#  https://www.mellowfire.com/
+
 from machine import RTC
 import ntptime
 
@@ -32,8 +41,9 @@ connectWifi(config.ssid, config.password)
 # and filters it down to just hours and minutes.
 def Whats_the_time():
     rtc = RTC()
-    ntptime.host = "pool.ntp.org"
-    ntptime.NTP_DELTA = 3155673600 - ((config.timezone + 1) * 3600)
+    ntptime.host = "time1.google.com"
+    ntptime.NTP_DELTA = 3155673600 - ((config.timezone) * 3600)
+    ntptime.settime()
     Time_clean = (
         re.sub("[(){}]", "", str(rtc.datetime()[4:6]))
         .replace(",", ":")
@@ -77,6 +87,6 @@ def test_run():
 # the list twice with the same time dispensing more pills then required.
 while True:
     # test_run()
-    # print(Whats_the_time())
+    print(Whats_the_time())
     check_time(Whats_the_time())
     time.sleep(60)
