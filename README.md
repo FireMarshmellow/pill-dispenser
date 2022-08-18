@@ -15,6 +15,6 @@ https://www.printables.com/model/215611-automatic-pill-dispensers
   
 
 ## Important disclaimer
-The pill dispenser is not what a 100% reliable solution, I don't recommend using it for essential medication.
+The pill dispenser is not a 100% reliable solution, I don't recommend using it for essential medication.
 It's intended for multivitamins and other supplements, and even then please check whether the pill dispenser has 
 dispensed the correct amount.
