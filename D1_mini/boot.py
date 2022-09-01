@@ -11,7 +11,7 @@ import machine
 #  | |  | |  __/ | | (_) \ V  V /| |    | | | |  __/
 #  |_|  |_|\___|_|_|\___/ \_/\_/ |_|    |_|_|  \___|
 #  https://www.mellowfire.com/
-
+global wlan
 wlan = None
 
 # this connect to the Wi-Fi network to get accurate a time.
@@ -32,7 +32,7 @@ def connectWifi(ssid, passwd):
     return True
 
 
-connectWifi(config.ssid, config.password)
+# connectWifi(config.ssid, config.password)
 
 # this gets the date and time from network Time protocol,
 # and filters it down to just hours and minutes.
@@ -106,7 +106,13 @@ def Contener(x):
 # note: if it's set to less than a minute it will go through
 # the list twice with the same time dispensing more pills then required.
 while True:
+    global wlan
+    wlan = network.WLAN(network.STA_IF)
+    if not wlan.isconnected():
+        print("wifi not connected")
+        connectWifi(config.ssid, config.password)
+    print("wifi connected")
     # test_run() # debug
-    # print(Whats_the_time()) # debug
+    print(Whats_the_time())  # debug
     check_time(Whats_the_time())
     time.sleep(60)
