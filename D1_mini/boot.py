@@ -1,9 +1,3 @@
-import network, re
-import time
-import config
-import ntptime
-import machine
-
 #   __  __      _ _               ______ _
 #  |  \/  |    | | |             |  ____(_)
 #  | \  / | ___| | | _____      _| |__   _ _ __ ___
@@ -11,40 +5,23 @@ import machine
 #  | |  | |  __/ | | (_) \ V  V /| |    | | | |  __/
 #  |_|  |_|\___|_|_|\___/ \_/\_/ |_|    |_|_|  \___|
 #  https://www.mellowfire.com/
-global wlan
-wlan = None
+import ntptime
+import time
+import re
+import config
+import machine
 
-# this connect to the Wi-Fi network to get accurate a time.
-def connectWifi(ssid, passwd):
-    global wlan
-    cnt = 0
-    print("Start Wifi.")
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-    print("Connect Wifi.", end="")
-    wlan.disconnect()
-    wlan.connect(ssid, passwd)
-    while not wlan.isconnected():
-        time.sleep(0.5)
-        print(".", end="")
-    print(" OK")
-    print("IP ADDR:", wlan.ifconfig()[0])
-    return True
+ntptime.settime()
+#LED = machine.Pin(15, machine.Pin.OUT)#debug
 
-
-connectWifi(config.ssid, config.password)
-
-# this gets the date and time from network Time protocol,
+# gets the date and time from network Time protocol,
 # and filters it down to just hours and minutes.
 def Whats_the_time():
-    rtc = machine.RTC()
-    ntptime.host = "time1.google.com"
-    ntptime.NTP_DELTA = 3155673600 - ((config.timezone) * 3600)
-    ntptime.settime()
+    time.localtime()
+    UTC_OFFSET = config.timezone * 60 * 60  # change the '-4' according to your timezone
+    actual_time = time.localtime(time.time() + UTC_OFFSET)
     Time_clean = (
-        re.sub("[(){}]", "", str(rtc.datetime()[4:6]))
-        .replace(",", ":")
-        .replace(" ", "")
+        re.sub("[(){}]", "", str(actual_time[3:5])).replace(",", ":").replace(" ", "")
     )
     return Time_clean
 
@@ -54,19 +31,15 @@ def Whats_the_time():
 def check_time(time):
     for i in config.contaner1:
         if i == time:
-            print("contaner_1")
             Contener(config.servo1pin)
     for i in config.contaner2:
         if i == time:
-            print("contaner_2")
             Contener(config.servo2pin)
     for i in config.contaner3:
         if i == time:
-            print("contaner_3")
             Contener(config.servo3pin)
     for i in config.contaner4:
         if i == time:
-            print("contaner_4")
             Contener(config.servo4pin)
 
 
@@ -84,7 +57,7 @@ def test_run():  # debug
 # This should only need changing if you are using different servos.
 def Contener(x):
     time.sleep(2)  # time needed for vibration sensor to turn off
-    # print("Contener" + str(x)) #debug
+    #print("Contener" + str(x))  # debug
     Servo = machine.PWM(machine.Pin(int(x)), freq=40)
     Senser = machine.Pin(config.senserpin, machine.Pin.IN)
     while int(Senser.value()) == 0:
@@ -106,8 +79,11 @@ def Contener(x):
 # note: if it's set to less than a minute it will go through
 # the list twice with the same time dispensing more pills then required.
 while True:
-    # test_run() # debug
-    print(Whats_the_time())  # debug
+    # test_run()# debug
+    #print(Whats_the_time())# debug
     check_time(Whats_the_time())
-    time.sleep(60)
-    machine.reset()
+    #LED.on()# debug
+    time.sleep(10)
+    #LED.off()# debug
+    time.sleep(50)
+    # machine.reset()
