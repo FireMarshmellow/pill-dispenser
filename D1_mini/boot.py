@@ -73,6 +73,10 @@ def Contener(x):
         time.sleep(0.3)
         Servo.duty(15)
         time.sleep(0.5)
+    
+    # Set the servo pin to input mode to disable it
+    Servo.deinit()
+    machine.Pin(int(x), machine.Pin.IN)
 
 
 # This loop will check the list against the time every minute,
