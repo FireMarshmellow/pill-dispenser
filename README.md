@@ -5,11 +5,11 @@ This is a 3D printed platform for dispensing medication everyday.
 ## for more information check out these links
 There will be an update to these links shortly.
 
-https://www.printables.com/model/261354-pill-dispensers-v8
+https://www.youtube.com/watch?v=qwRPohaCWyw
 
-https://www.mellowfire.com/post/automated-pill-dispenser-finally-finished
+https://www.mellowfire.com/post/automatic-pill-dispenser
 
-https://www.youtube.com/watch?v=UZQ9VuxIBHU
+https://www.printables.com/model/215611-automatic-pill-dispensers
 
   
   
