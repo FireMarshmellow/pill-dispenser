@@ -73,6 +73,7 @@ def Contener(x):
         time.sleep(0.3)
         Servo.duty(15)
         time.sleep(0.5)
+        Servo.duty(0)
         
     machine.Pin(int(x), machine.Pin.IN)
 
