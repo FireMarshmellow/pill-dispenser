@@ -9,8 +9,7 @@ https://www.youtube.com/watch?v=qwRPohaCWyw
 
 https://www.mellowfire.com/post/automatic-pill-dispenser
 
-https://www.printables.com/model/215611-automatic-pill-dispensers
-
+https://www.patreon.com/posts/pill-dispenser-85981554?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link
   
   
 
