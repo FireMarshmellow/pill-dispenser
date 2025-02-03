@@ -158,7 +158,4 @@ No part of this repository may be reproduced, distributed,
 or transmitted in any form or by any means without the prior written
 permission of the copyright owner.
 ```
-
-*Note:* The design files are available for purchase on Patreon. Unauthorized replication or distribution of these files is prohibited.
-
 ---
