@@ -16,6 +16,7 @@
 #include <uRTCLib.h>
 #include <ArduinoJson.h>
 #include <time.h>
+#include <vector>  // For using std::vector as a task queue
 
 // ==========================================================================
 //                          CONFIGURATION & GLOBALS
@@ -52,6 +53,9 @@ bool stopControl   = false;     // Flag to stop motor control loop
 unsigned long previousMillis = 0;
 const long motorInterval = 50;  // Interval (ms) between sensor readings
 
+// Delay (in ms) between a dispensing cycle stopping and starting the next one.
+const int interCycleDelay = 500;
+
 // ----------------------
 // Schedule Checking Variables
 // ----------------------
@@ -66,6 +70,20 @@ int scheduledMotorSpeed         = 0;  // PWM speed for scheduled dispensing
 int scheduledTriggerThreshold   = 0;  // Sensor threshold for scheduled dispensing
 int scheduledPillCountRemaining = 0;  // Number of pills remaining to dispense
 bool scheduleActive             = false;  // Flag indicating an active scheduled dispensing
+
+// ----------------------
+// Dispensing Task Queue
+// ----------------------
+// Define a structure for a dispensing task.
+struct DispenseTask {
+  int container;
+  int motorSpeed;
+  int triggerThreshold;
+  int pillCount;
+};
+
+// Use a vector to queue multiple dispensing tasks.
+std::vector<DispenseTask> dispenseQueue;
 
 // ==========================================================================
 //                           UTILITY FUNCTIONS
@@ -369,36 +387,28 @@ void startMotorForSchedule() {
 }
 
 /**
- * @brief Queues a dispensing operation from a schedule.
+ * @brief Adds a dispensing task to the queue.
  *
- * If no motor is currently running, it updates the scheduled parameters
- * and starts dispensing.
+ * This function creates a dispensing task from the given parameters and
+ * pushes it into the global queue.
  *
  * @param container Container number (1-indexed).
  * @param motorSpeed PWM speed for the motor.
  * @param triggerThreshold Sensor trigger threshold.
  * @param pillCount Number of pills to dispense.
  */
-void runMotorForSchedule(int container, int motorSpeed, int triggerThreshold, int pillCount) {
-  if (motorRunning) {
-    Serial.println("Motor already running; schedule trigger skipped.");
-    return;
-  }
-  
-  scheduledContainer = container;
-  scheduledMotorSpeed = motorSpeed;
-  scheduledTriggerThreshold = triggerThreshold;
-  scheduledPillCountRemaining = pillCount;  // e.g., 3 pills
-  scheduleActive = true;
-  
-  startMotorForSchedule();
+void addDispenseTask(int container, int motorSpeed, int triggerThreshold, int pillCount) {
+  DispenseTask task = { container, motorSpeed, triggerThreshold, pillCount };
+  dispenseQueue.push_back(task);
+  Serial.printf("Added task: Container %d, PWM %d, Threshold %d, Pills %d\n",
+                container, motorSpeed, triggerThreshold, pillCount);
 }
 
 /**
  * @brief Checks the schedules from schedules.json against the current time.
  *
  * If a schedule matches the current day and time, it reads container
- * settings from settings.json and triggers a dispensing operation.
+ * settings from settings.json and queues a dispensing operation.
  */
 void checkSchedules() {
   // Get current time information
@@ -492,10 +502,10 @@ void checkSchedules() {
     Serial.printf("Schedule match: Container %d at %s on %s. Dispensing %d pill(s).\n", 
                   container, currentTimeStr, dayStr.c_str(), pillCount);
     
-    runMotorForSchedule(container, motorSpeed, triggerThreshold, pillCount);
+    // Instead of running immediately, add this task to the queue.
+    addDispenseTask(container, motorSpeed, triggerThreshold, pillCount);
     
-    // Optional: Break to avoid multiple triggers within the same minute
-    break;
+    // Note: Removed the break to allow all matching schedules to be queued.
   }
 }
 
@@ -605,10 +615,13 @@ void loop() {
                       currentMotor, MOTOR_PINS[currentMotor]);
         currentMotor = -1;
         
+        // Add an extra delay between the motor stopping and starting the next cycle.
+        delay(interCycleDelay);
+        
         // For scheduled dispensing: if more pills remain, start next cycle.
         if (scheduleActive && scheduledPillCountRemaining > 1) {
           scheduledPillCountRemaining--;  // One pill dispensed
-          delay(1000);  // Optional blocking delay between pills
+          delay(1000);  // Optional blocking delay between pills (can adjust as needed)
           startMotorForSchedule();
         } else {
           // Clear scheduled state when finished.
@@ -616,6 +629,24 @@ void loop() {
         }
       }
     }
+  }
+  
+  // ----------------------
+  // Check and Start Next Task from the Queue if Motor is Free
+  // ----------------------
+  if (!motorRunning && !dispenseQueue.empty() && !scheduleActive) {
+    // Pop the next task from the queue
+    DispenseTask task = dispenseQueue.front();
+    dispenseQueue.erase(dispenseQueue.begin());
+    
+    // Update global scheduled parameters from the task.
+    scheduledContainer = task.container;
+    scheduledMotorSpeed = task.motorSpeed;
+    scheduledTriggerThreshold = task.triggerThreshold;
+    scheduledPillCountRemaining = task.pillCount;
+    scheduleActive = true;
+    
+    startMotorForSchedule();
   }
   
   // ----------------------
