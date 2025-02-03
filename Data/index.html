@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mellow_labs Pill Dispenser</title>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Mellow_labs Pill Dispenser</h1>
+  <div class="container-grid">
+    <!-- Container 1 (Blue) -->
+    <div class="container-block" id="container1-block">
+      <div class="container-header">
+        <h2>Container 1</h2>
+        <div>
+          <button onclick="openScheduleDialog(1, null)">+ Add Schedule</button>
+          <button onclick="openSettingsDialog(1)">Settings</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table id="container1-table">
+          <thead>
+            <tr>
+              <th>Days</th>
+              <th>Pills</th>
+              <th>Times</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Container 2 (Red) -->
+    <div class="container-block" id="container2-block">
+      <div class="container-header">
+        <h2>Container 2</h2>
+        <div>
+          <button onclick="openScheduleDialog(2, null)">+ Add Schedule</button>
+          <button onclick="openSettingsDialog(2)">Settings</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table id="container2-table">
+          <thead>
+            <tr>
+              <th>Days</th>
+              <th>Pills</th>
+              <th>Times</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Container 3 (Yellow) -->
+    <div class="container-block" id="container3-block">
+      <div class="container-header">
+        <h2>Container 3</h2>
+        <div>
+          <button onclick="openScheduleDialog(3, null)">+ Add Schedule</button>
+          <button onclick="openSettingsDialog(3)">Settings</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table id="container3-table">
+          <thead>
+            <tr>
+              <th>Days</th>
+              <th>Pills</th>
+              <th>Times</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Container 4 (Green) -->
+    <div class="container-block" id="container4-block">
+      <div class="container-header">
+        <h2>Container 4</h2>
+        <div>
+          <button onclick="openScheduleDialog(4, null)">+ Add Schedule</button>
+          <button onclick="openSettingsDialog(4)">Settings</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table id="container4-table">
+          <thead>
+            <tr>
+              <th>Days</th>
+              <th>Pills</th>
+              <th>Times</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Collapsible Settings Panel ========== -->
+  <div class="collapsible-header" onclick="toggleSettingsPanel()">Settings ▾</div>
+  <div class="collapsible-content" id="settingsPanel" style="display: none; justify-content: space-between; align-items: center;">
+      <!-- Left Side: RTC Button and Clock -->
+      <div style="display: flex; align-items: center;">
+        <button id="setRTCButton" onclick="setRTC()">Set RTC</button>
+        <span id="clock" style="margin-left: 10px; font-weight: bold; border: 1px solid #ccc; padding: 5px 8px; border-radius: 5px;"></span>
+      </div>
+      <!-- Right Side: Dark Mode Toggle -->
+      <div>
+        <button type="button" id="toggleDarkButton" onclick="toggleDarkMode()">Dark Mode</button>
+      </div>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+
+  <!-- ================== Creative Schedule Dialog ================== -->
+  <div id="scheduleDialog">
+    <div class="header">
+      <h2 id="dialogTitle">Add Schedule</h2>
+      <span class="close-btn" onclick="closeScheduleDialog()">×</span>
+    </div>
+    <div class="content">
+      <div class="everyday-container">
+        <button id="everydayBtn" onclick="toggleEveryday()">Everyday</button>
+      </div>
+      <div class="days-grid">
+        <button data-day="Monday" onclick="toggleDay(this)">Mon</button>
+        <button data-day="Tuesday" onclick="toggleDay(this)">Tue</button>
+        <button data-day="Wednesday" onclick="toggleDay(this)">Wed</button>
+        <button data-day="Thursday" onclick="toggleDay(this)">Thu</button>
+        <button data-day="Friday" onclick="toggleDay(this)">Fri</button>
+        <button data-day="Saturday" onclick="toggleDay(this)">Sat</button>
+        <button data-day="Sunday" onclick="toggleDay(this)">Sun</button>
+      </div>
+      <div class="pill-count">
+        <label>Pill Count:</label>
+        <div class="pill-counter">
+          <button class="minus-btn" onclick="decrementPillCount()">−</button>
+          <input type="text" id="pillCount" value="1" readonly>
+          <button class="plus-btn" onclick="incrementPillCount()">+</button>
+        </div>
+      </div>
+      <div class="time-inputs" id="timeInputs">
+        <!-- Time inputs will be generated here -->
+      </div>
+    </div>
+    <div class="footer">
+      <button class="save-btn" onclick="saveSchedule()">Save</button>
+      <button class="cancel-btn" onclick="closeScheduleDialog()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- ================== Settings Dialog ================== -->
+  <div id="settingsDialog">
+    <h2 id="settingsDialogTitle">Container Settings</h2>
+    <div style="text-align: center; margin-bottom: 15px;">
+      <button id="testMotorButton" onclick="testMotor()" style="margin-bottom: 10px;">Test motor</button>
+    </div>
+    <div class="slider-group">
+      <label for="motorSpeed">Motor speed PWM: <span id="motorSpeedValue" class="slider-value"></span></label>
+      <input type="range" id="motorSpeed" min="0" max="255" value="128" oninput="document.getElementById('motorSpeedValue').textContent = this.value">
+    </div>
+    <div class="slider-group">
+      <label for="triggerThreshold">Trigger threshold: <span id="triggerThresholdValue" class="slider-value"></span></label>
+      <input type="range" id="triggerThreshold" min="0" max="3000" value="1500" oninput="document.getElementById('triggerThresholdValue').textContent = this.value">
+    </div>
+    <div class="dialog-buttons-settings">
+      <button id="saveSettingsBtn" onclick="saveSettings()">Save</button>
+      <button onclick="closeSettingsDialog()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Link to external JavaScript file -->
+  <script src="script.js" defer></script>
+</body>
+</html>
