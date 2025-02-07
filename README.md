@@ -1,6 +1,6 @@
 # DIY Pill Dispenser
 
-This is a 3D Printable DIY pill dispenser, and the files are available for purchase [purchase on my Patreon](https://www.patreon.com/Mellow_labs/shop/pill-dispenser-files-104871?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=productshare_creator&utm_content=join_link)
+This is a 3D Printable DIY pill dispenser, and the Models and Schematics are available for purchase [purchase on my Patreon](https://www.patreon.com/Mellow_labs/shop/pill-dispenser-files-104871?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=productshare_creator&utm_content=join_link)
 
 ## Project video
 *(wip! Embedded video here.)*
@@ -11,11 +11,12 @@ This project provides a 3D printed pill dispenser that utilizes a vibration sens
 
 ## Bill of Materials
 
-- **DC 5V Vibration Sensor Piezoelectric Sheet Vibration Shock Sensor Switch Module**
+- **Piezo Disc Sensor**
 - **Micro Mini Gear Motor DC**
 - **Real Time Clock RTC DS1307 I2C Module**
 - **DRV8833 2 Channel DC Motor Driver Module**
 - **Beetle ESP32 C6**
+- **Resistors(1x 1M ohm)(1x 10K ohm)**
 
 ---
 
