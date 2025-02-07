@@ -17,6 +17,8 @@ This project provides a 3D printed pill dispenser that utilizes a vibration sens
 - **DRV8833 2 Channel DC Motor Driver Module**
 - **Beetle ESP32 C6**
 - **Resistors(1x 1M ohm)(1x 10K ohm)**
+- **8 x self tapping screws (9mm)**
+- **8 x M3 screws and nuts (12mm)**
 
 ---
 
