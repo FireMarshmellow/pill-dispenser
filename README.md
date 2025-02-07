@@ -12,7 +12,7 @@ This project provides a 3D printed pill dispenser that utilizes a vibration sens
 ## Bill of Materials
 
 - **Piezo Disc Sensor**
-- **Micro Mini Gear Motor DC**
+- **4 x Micro Mini Gear Motor DC**
 - **Real Time Clock RTC DS1307 I2C Module**
 - **DRV8833 2 Channel DC Motor Driver Module**
 - **Beetle ESP32 C6**
