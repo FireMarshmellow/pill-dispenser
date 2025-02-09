@@ -44,7 +44,7 @@ Make sure these libraries are installed in your Arduino IDE before compiling the
 - [Step 2: Install the ESP32 LittleFS Uploader](#step-2-install-the-esp32-littlefs-uploader)
 - [Step 3: Download the Repository ZIP](#step-3-download-the-repository-zip)
 - [Step 4: Open and Configure the Project](#step-4-open-and-configure-the-project)
-- [Step 5: Upload the Sketch and Data Folder](#step-5-upload-the-sketch-and-data-folder)
+- [Step 5: Update WiFi Credentials and Upload the Sketch and Data Folder](#step-5-update-wifi-credentials-and-upload-the-sketch-and-data-folder)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
 
@@ -123,13 +123,24 @@ Make sure these libraries are installed in your Arduino IDE before compiling the
 
 ---
 
-## Step 5: Upload the Sketch and Data Folder
+## Step 5: Update WiFi Credentials and Upload the Sketch and Data Folder
 
-1. **Upload the Sketch**  
+1. **Update WiFi Credentials**  
+   - Open the `.ino` file in the Arduino IDE.
+   - Locate the section of the code where the WiFi credentials are defined (usually near the top of the file).
+   - Update the `SSID` and `PASSWORD` variables with your WiFi network's name and password.
+
+   ```cpp
+   // Example:
+   const char* ssid = "your_SSID";
+   const char* password = "your_PASSWORD";
+   ```
+
+2. **Upload the Sketch**  
    - Click the **Upload** button in the Arduino IDE.
    - Wait for the code to compile and upload to your board.
 
-2. **Upload the Data Folder Using LittleFS Uploader**  
+3. **Upload the Data Folder Using LittleFS Uploader**  
    - With your board connected, go to **Tools > ESP32 LittleFS Upload** (this option will appear after installing the uploader tool).
    - Click this option to start uploading the contents of your `data` folder to the board's filesystem.
    - Verify that the upload completes successfully. If errors occur, refer to the troubleshooting section.

@@ -25,8 +25,8 @@
 // ----------------------
 // WiFi Credentials, Motor & Sensor Definitions
 // ----------------------
-const char* ssid     = "CommunityFibre10Gb_9617A";
-const char* password = "bnqfuutaqu";
+const char* ssid = "your_SSID";
+const char* password = "your_PASSWORD";
 
 const int MOTOR_PINS[] = {7, 21, 22, 23};  // Motor control output pins
 const int ANALOG_PIN   = 4;                // Sensor input pin for motor feedback
