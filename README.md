@@ -5,9 +5,6 @@ This is a 3D Printable DIY pill dispenser, and the Models and Schematics are ava
 ## Project video
 *(wip! Embedded video here.)*
 
-## Project Description
-
-This project provides a 3D printed pill dispenser that utilizes a vibration sensor, a mini gear motor, a real-time clock, a motor driver, and an ESP32 board to control the dispensing mechanism. A detailed video on my main channel goes over everything you need to know about building this project.
 
 ## Bill of Materials
 
@@ -37,19 +34,6 @@ Make sure these libraries are installed in your Arduino IDE before compiling the
 
 ---
 
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Step 1: Install the Arduino IDE](#step-1-install-the-arduino-ide)
-- [Step 2: Install the ESP32 LittleFS Uploader](#step-2-install-the-esp32-littlefs-uploader)
-- [Step 3: Download the Repository ZIP](#step-3-download-the-repository-zip)
-- [Step 4: Open and Configure the Project](#step-4-open-and-configure-the-project)
-- [Step 5: Update WiFi Credentials and Upload the Sketch and Data Folder](#step-5-update-wifi-credentials-and-upload-the-sketch-and-data-folder)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
-
----
-
 ## Prerequisites
 
 - A computer running Windows, macOS, or Linux.
@@ -60,103 +44,76 @@ Make sure these libraries are installed in your Arduino IDE before compiling the
 
 ---
 
-## Step 1: Install the Arduino IDE
+## Step 1: Installing the Arduino IDE
 
-1. **Download the Arduino IDE**  
-   Visit the [Arduino Software page](https://www.arduino.cc/en/software) and download the version appropriate for your operating system.
+1. **Download the Arduino IDE:**  
+   Visit the [Arduino Software page](https://www.arduino.cc/en/software) and choose the version for your operating system.
 
-2. **Install the Arduino IDE**  
-   - **Windows:** Run the downloaded installer and follow the on-screen instructions.  
+2. **Install the Arduino IDE:**  
+   - **Windows:** Run the installer and follow the on-screen prompts.  
    - **macOS:** Open the downloaded `.dmg` file and drag the Arduino IDE into your Applications folder.  
-   - **Linux:** Follow your distribution’s installation instructions (usually involving unpacking the tarball and running an installer script).
+   - **Linux:** Follow your distribution’s instructions (typically unpacking a tarball and running an install script).
 
-3. **Launch the Arduino IDE**  
-   Open the Arduino IDE to ensure it is installed correctly.
-
----
-
-## Step 2: Install the ESP32 LittleFS Uploader
-
-1. **Follow the Tutorial**  
-   To work with the LittleFS filesystem on the ESP32, follow the detailed steps in this tutorial:  
-   [Arduino IDE 2: Install ESP32 LittleFS](https://randomnerdtutorials.com/arduino-ide-2-install-esp32-littlefs/).
-
-2. **Installation Overview**  
-   The tutorial will guide you through:  
-   - Downloading the LittleFS Uploader tool.
-   - Placing the tool in the correct Arduino tools directory.
-   - Verifying the installation within the Arduino IDE.
-
-*Ensure that you follow all the instructions carefully, as some steps may vary depending on your operating system or Arduino IDE version.*
+3. **Launch the Arduino IDE:**  
+   Once installed, open the IDE to confirm that everything works correctly.
 
 ---
 
-## Step 3: Download the Repository ZIP
+## Step 2: Downloading the Repository
 
-1. **Visit the GitHub Repository Page**  
-   Navigate to the GitHub page for this project.
+1. **Visit the GitHub Repository:**  
+   Navigate to the project’s GitHub page.
 
-2. **Download the ZIP File**  
-   - Click on the green **Code** button.
-   - Select **Download ZIP** from the dropdown menu.
-   - Save the ZIP file to a location on your computer.
+2. **Download the ZIP File:**  
+   - Click the green **Code** button and select **Download ZIP**.  
+   - Save the file to your computer.
 
-3. **Extract the ZIP File**  
-   - Locate the downloaded ZIP file.
-   - Extract the contents into your Arduino projects folder.
-   - Confirm that the extracted folder contains the Arduino sketch (e.g., `PillDispenser.ino`) and a `data` folder if required by your project.
+3. **Extract the Files:**  
+   Unzip the downloaded file into your Arduino projects folder. The folder should include the main Arduino sketch (e.g., `PillDispenser.ino`) and a `data` folder if needed.
 
 ---
 
-## Step 4: Open and Configure the Project
+## Step 3: Opening and Configuring the Project
 
-1. **Launch the Arduino IDE**  
-   Open the Arduino IDE if it isn’t already running.
+1. **Open the Arduino IDE:**  
+   Launch the IDE if it isn’t already running.
 
-2. **Open the Project**  
-   - Click on **File > Open**.
-   - Navigate to the extracted project folder and select the `.ino` file.
+2. **Open the Project File:**  
+   - Go to **File > Open** and locate the `.ino` file inside your extracted folder.
 
-3. **Select the Correct Board and Port**  
-   - Go to **Tools > Board** and choose your ESP32 board (e.g., Beetle ESP32 C6).
-   - Then, go to **Tools > Port** and select the COM port corresponding to your board.
+3. **Select Your Board and Port:**  
+   - In **Tools > Board**, choose your ESP32 board (for example, Beetle ESP32 C6).  
+   - Then, in **Tools > Port**, select the COM port corresponding to your board.
 
 ---
 
-## Step 5: Update WiFi Credentials and Upload the Sketch and Data Folder
+## Step 4: Updating WiFi Credentials and Uploading
 
-1. **Update WiFi Credentials**  
-   - Open the `.ino` file in the Arduino IDE.
-   - Locate the section of the code where the WiFi credentials are defined (usually near the top of the file).
-   - Update the `SSID` and `PASSWORD` variables with your WiFi network's name and password.
-
+1. **Update the WiFi Settings:**  
+   Open the `.ino` file and find the section at the top where WiFi credentials are defined. Update the `ssid` and `password` variables with your network’s details:
    ```cpp
-   // Example:
    const char* ssid = "your_SSID";
    const char* password = "your_PASSWORD";
    ```
 
-2. **Upload the Sketch**  
-   - Click the **Upload** button in the Arduino IDE.
-   - Wait for the code to compile and upload to your board.
+2. **Upload the Sketch:**  
+   Click the **Upload** button in the Arduino IDE. Once the code compiles, the sketch will be uploaded to your board.
 
-3. **Upload the Data Folder Using LittleFS Uploader**  
-   - With your board connected, go to **Tools > ESP32 LittleFS Upload** (this option will appear after installing the uploader tool).
-   - Click this option to start uploading the contents of your `data` folder to the board's filesystem.
-   - Verify that the upload completes successfully. If errors occur, refer to the troubleshooting section.
+3. **Upload the Data Folder (if applicable):**  
+   If your project requires additional files (e.g., for LittleFS), use the Arduino IDE’s data upload tool to transfer the contents of the `data` folder.
 
 ---
 
 ## Troubleshooting
 
-- **Arduino IDE Issues:**  
-  Ensure you have the latest version of the Arduino IDE and that your board definitions are updated.
+- **IDE Issues:**  
+  Make sure you’re using the latest Arduino IDE version and have updated your board definitions.
 
-- **LittleFS Uploader Not Appearing:**  
-  Double-check that the uploader tool was placed in the correct directory, and consult the [tutorial](https://randomnerdtutorials.com/arduino-ide-2-install-esp32-littlefs/) for additional guidance.
+- **COM Port Connectivity:**  
+  Verify that the proper drivers are installed for your ESP32 board. A computer restart might help if connectivity issues persist.
 
-- **COM Port Problems:**  
-  Confirm that the drivers for your ESP32 board are installed. Restarting your computer may help resolve connectivity issues.
+- **Library Errors:**  
+  Ensure all required libraries are installed via the Library Manager in the Arduino IDE.
 
 ---
 
@@ -167,9 +124,10 @@ Copyright © [2025] [Tomasz Burzy]
 
 All Rights Reserved. The contents of this repository,
 including but not limited to design files, code, and documentation,
-are proprietary and provided for personal use only. 
+are proprietary and provided for personal use only.
 No part of this repository may be reproduced, distributed,
 or transmitted in any form or by any means without the prior written
 permission of the copyright owner.
 ```
+
 ---
