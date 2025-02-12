@@ -3,8 +3,7 @@
 This is a 3D Printable DIY pill dispenser, and the Models and Schematics are available for purchase [purchase on my Patreon](https://www.patreon.com/Mellow_labs/shop/pill-dispenser-files-104871?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=productshare_creator&utm_content=join_link)
 
 ## Project video
-*(wip! Embedded video here.)*
-
+[![Video Title](https://img.youtube.com/vi/1kCoDDYpgkE/0.jpg)](https://www.youtube.com/watch?v=1kCoDDYpgkE)
 
 ## Bill of Materials
 
